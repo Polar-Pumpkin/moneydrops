@@ -112,7 +112,7 @@ public class MoneyPickupListener implements Listener {
 
         if (event.getEntity() instanceof Player) {
             final Player player = (Player) event.getEntity();
-            final double amount = meta.getPersistentDataContainer().get(manager.key, PersistentDataType.DOUBLE);
+            double amount = meta.getPersistentDataContainer().get(manager.key, PersistentDataType.DOUBLE);
             UtilPlayer.playSound(player, this.sound, this.volume, this.pitch);
 
             final EconomyResponse response = plugin.getEconomy().depositPlayer(player, amount);
@@ -120,6 +120,7 @@ public class MoneyPickupListener implements Listener {
             if (response.transactionSuccess()) {
                 final PlayerPickupMoneyEvent toCall = new PlayerPickupMoneyEvent(player, amount);
                 Bukkit.getPluginManager().callEvent(toCall);
+                amount = UtilMath.unsafeRound(toCall.getAmount(), 2);
 
                 final String val = String.valueOf(UtilMath.unsafeRound(amount, 2));
 

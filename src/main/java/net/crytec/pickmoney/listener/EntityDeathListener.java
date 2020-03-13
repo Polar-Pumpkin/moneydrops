@@ -72,7 +72,7 @@ public class EntityDeathListener implements Listener {
             return;
         }
 
-        final double money = manager.getDropAmount(data.getRange());
+        double money = manager.getDropAmount(data.getRange());
 
         if (money < ConfigOptions.MINIMUM_TO_DROP.asDouble()) {
             return;
@@ -84,6 +84,7 @@ public class EntityDeathListener implements Listener {
 
         final EntityDropMoneyEvent toCall = new EntityDropMoneyEvent(event.getEntity(), money);
         Bukkit.getPluginManager().callEvent(toCall);
+        money = UtilMath.unsafeRound(toCall.getAmount(), 2);
 
         if (toCall.isCancelled()) {
             return;
@@ -124,6 +125,7 @@ public class EntityDeathListener implements Listener {
 
         final EntityDropMoneyEvent toCall = new EntityDropMoneyEvent(event.getEntity(), amount);
         Bukkit.getPluginManager().callEvent(toCall);
+        amount = UtilMath.unsafeRound(toCall.getAmount(), 2);
 
         if (toCall.isCancelled()) {
             return;
