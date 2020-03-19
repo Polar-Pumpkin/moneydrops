@@ -79,15 +79,22 @@ public class DropManager {
         this.showDisplayName = ConfigOptions.SHOW_DISPLAYNAME.asBoolean();
         this.defaultIcon = new ItemPair(ConfigOptions.DEFAULT_ICON.asString());
 
-        final ConfigurationSection range = plugin.getConfig().getConfigurationSection("icon");
+        final ConfigurationSection range = plugin.getConfig().getConfigurationSection("Icon");
 
         for (final String key : range.getKeys(false)) {
             final ConfigurationSection entry = range.getConfigurationSection(key);
 
-            final int min = entry.getInt("rangeMin");
-            final int max = entry.getInt("rangeMax");
+            int min = 0;
+            int max = 10;
+            String[] dataSet = entry.getString("Range").split("-");
+            if (dataSet.length == 2) {
+                int num1 = Integer.parseInt(dataSet[0]);
+                int num2 = Integer.parseInt(dataSet[1]);
+                min = Math.min(num1, num2);
+                max = Math.max(num1, num2);
+            }
 
-            iconRange.put(Range.closed(min, max), new ItemPair(entry.getString("material")));
+            iconRange.put(Range.closed(min, max), new ItemPair(entry.getString("Material")));
         }
 
         if (ConfigOptions.PLAYER_DROP_ENABLED.asBoolean()) {
@@ -104,7 +111,7 @@ public class DropManager {
             dropData.put(EntityType.PLAYER, data);
         }
 
-        final ConfigurationSection entity = plugin.getConfig().getConfigurationSection("entity");
+        final ConfigurationSection entity = plugin.getConfig().getConfigurationSection("Entity");
 
         for (final String key : entity.getKeys(false)) {
             final ConfigurationSection entry = entity.getConfigurationSection(key);
@@ -115,7 +122,7 @@ public class DropManager {
             }
 
             final EntityType type = EntityType.valueOf(key);
-            final String[] value = entry.getString("amount").split("-");
+            final String[] value = entry.getString("Amount").split("-");
 
             double min = 0;
             double max = 0;
@@ -140,12 +147,10 @@ public class DropManager {
             }
 
             final Range<Double> dropRange = Range.closed(min, max);
-            final double chance = entry.getDouble("chance");
+            final double chance = entry.getDouble("Chance");
 
-            if (entry.getBoolean("enabled")) {
-                final EntityDropData data = new EntityDropData(type, dropRange, chance);
-                dropData.put(type, data);
-            }
+            final EntityDropData data = new EntityDropData(type, dropRange, chance);
+            dropData.put(type, data);
         }
     }
 

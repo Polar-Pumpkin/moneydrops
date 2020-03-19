@@ -35,30 +35,33 @@ import java.util.List;
 
 public enum ConfigOptions {
 
-    DEFAULT_ICON("options.defaultDropIcon", "GOLD_INGOT"),
-    SOUND("options.sound.name", "ENTITY_PLAYER_LEVELUP"),
-    SOUND_PITCH("options.sound.pitch", 1.25F),
-    SOUND_VOLUME("options.sound.volume", 1.0F),
-    SHOW_DISPLAYNAME("options.showDropName", true),
-    MERGE_ITEMS("options.mergeDrops", true),
-    DROP_NATURALLY("options.dropNaturally", true),
-    BLACKLISTED_WORLDS("blacklisted_worlds", Arrays.asList("world2")),
-    SHOW_TITLE("options.showTitle", false),
-    SHOW_CHAT("options.showChatMessage", true),
-    TITLE_HEADER("messages.titleHead", ""),
-    TITLE_SUB("messages.subtitle", "&7Picked up %value% money"),
-    DROP_DISPLAYNAME("messages.dropDisplayName", "&bValue: %value%"),
-    PICKUP_MESSAGE("messages.pickupMessage", "&7Picked up %value% Money"),
-    LOST_MONEY("messages.playerdeath", "&7You have lost %value% from your balance because you've died."),
-    DO_DECIMAL_DROPS("options.useDecimalNumbers", true),
-    MINIMUM_TO_DROP("options.minimumAmountToDrop", 0.01D),
-    REQUIRE_PLAYERKILL("options.requirePlayerAsKiller", false),
+    SOUND("Options.Sound.Name", "ENTITY_PLAYER_LEVELUP"),
+    SOUND_PITCH("Options.Sound.Pitch", 1.25F),
+    SOUND_VOLUME("Options.Sound.Volume", 1.0F),
 
+    BLACKLISTED_WORLDS("Blacklist", Arrays.asList("world2")),
 
-    PLAYER_DROP_ENABLED("player.enabled", false),
-    PLAYER_DROP_PERCENTAGE("player.percentageAmount", "0.5-2.45"),
-    PLAYER_DROP_CHANCE("player.chance", 20),
-    PLAYER_DROP_HARDCAP("player.hardcap", 2500);
+    SHOW_DISPLAYNAME("Options.Show.DisplayName", true),
+    SHOW_TITLE("Options.Show.Title", false),
+    SHOW_CHAT("Options.Show.Chat", true),
+
+    TITLE_HEADER("Messages.Title", ""),
+    TITLE_SUB("Messages.Subtitle", "&7Picked up %value% money"),
+    DROP_DISPLAYNAME("Messages.DisplayName", "&bValue: %value%"),
+    PICKUP_MESSAGE("Messages.Pickup", "&7Picked up %value% Money"),
+    LOST_MONEY("Messages.Death", "&7You have lost %value% from your balance because you've died."),
+
+    DEFAULT_ICON("Options.Drop.DefaultIcon", "GOLD_INGOT"),
+    MERGE_ITEMS("Options.Drop.Merge", true),
+    DROP_NATURALLY("Options.Drop.DropNaturally", true),
+    DO_DECIMAL_DROPS("Options.Drop.DecimalNumbers", true),
+    MINIMUM_TO_DROP("Options.Drop.MinAmount", 0.01D),
+    REQUIRE_PLAYERKILL("Options.Drop.RequireKiller", false),
+
+    PLAYER_DROP_ENABLED("Player.Enabled", false),
+    PLAYER_DROP_PERCENTAGE("Player.PercentageAmount", "0.5-2.45"),
+    PLAYER_DROP_CHANCE("Player.Chance", 20),
+    PLAYER_DROP_HARDCAP("Player.Hardcap", 2500);
 
 
     private static YamlConfiguration CONFIG;

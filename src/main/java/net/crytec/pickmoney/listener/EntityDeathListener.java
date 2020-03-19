@@ -64,7 +64,10 @@ public class EntityDeathListener implements Listener {
             return;
         }
 
-        final EntityDropData data = manager.dropData.get(event.getEntity().getType());
+        final EntityDropData data = manager.dropData.getOrDefault(event.getEntity().getType(), null);
+        if (data == null) {
+            return;
+        }
 
         final double chance = manager.getRandom(2);
 
